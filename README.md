@@ -26,9 +26,3 @@ config.json requires:
 - the twitch bot's client id
 - the twitch bot's client secret
 - the usernames of the streamers you wish to monitor.
-
-line 78 of bot.py has the "ping" interval at 15 seconds, which is probably way too long
-```python
-# this can almost certainly be shorter than 15 seconds. depends on how many streamers you're monitoring, I think? 1 second is honestly probably fine'
-        await asyncio.sleep(15)
-```

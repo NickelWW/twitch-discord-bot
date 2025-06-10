@@ -79,7 +79,7 @@ async def check_streams(channel):
             }
 
         save_state(state)
-        # this can almost certainly be shorter than 15 seconds. depends on how many streamers you're monitoring, I think? 1 second is honestly probably fine
+        # if you have a LOT of streamers in your config, consider increases this value (to not get rate limited)
         await asyncio.sleep(1)
 
 
