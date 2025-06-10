@@ -1,6 +1,7 @@
 import discord
 import asyncio
 import json
+import time
 from twitch import TwitchAPI
 
 with open("config.json") as f:
@@ -39,11 +40,15 @@ async def check_streams(channel):
 
             # Handle going online
             if live and not prev["live"]:
-                await channel.send(
-                    f"🔴 **@everyone {name} is live!**\n"
-                    f"**Title:** {live['title']}\n"
-                    f"https://twitch.tv/{name}"
+                thumbnail_url = live['thumbnail_url'].format(width=1280, height=720) + f"?rand={int(time.time())}"
+                embed = discord.Embed(
+                    title=f"{name} is LIVE!",
+                    description=f"**Title:** {live['title']}\n[twitch.tv/{name}](https://twitch.tv/{name})",
+                    color=discord.Color.purple()
                 )
+                embed.set_image(url=thumbnail_url)
+                await channel.send(content="@everyone 🔴", embed=embed)
+
 
             # Handle title change while live
             elif live and live["title"] != prev["title"]:
@@ -75,7 +80,7 @@ async def check_streams(channel):
 
         save_state(state)
         # this can almost certainly be shorter than 15 seconds. depends on how many streamers you're monitoring, I think? 1 second is honestly probably fine
-        await asyncio.sleep(15)
+        await asyncio.sleep(1)
 
 
 @client.event
