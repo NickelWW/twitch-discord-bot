@@ -48,13 +48,13 @@ async def check_streams(channel):
             # Handle title change while live
             elif live and live["title"] != prev["title"]:
                 await channel.send(
-                    f"✏️ **@everyone {name} changed their title!**\n"
+                    f"✏️ **@everyone {name} changed their title**\n"
                     f"**New Title:** {live['title']}"
                 )
 
             # Handle going offline
             elif not live and prev["live"]:
-                await channel.send(f"⚫ **@everyone {name} went offline.**")
+                await channel.send(f"⚫ **@everyone {name} went offline**")
 
             # Detect title changes while offline
             if not live:
@@ -74,7 +74,7 @@ async def check_streams(channel):
             }
 
         save_state(state)
-        # this can almost certainly be shorter than 15 seconds. depends on how many streamers you're monitoring, I think? 1 second is honestly probably fine'
+        # this can almost certainly be shorter than 15 seconds. depends on how many streamers you're monitoring, I think? 1 second is honestly probably fine
         await asyncio.sleep(15)
 
 
