@@ -61,17 +61,6 @@ async def check_streams(channel):
             elif not live and prev["live"]:
                 await channel.send(f"⚫ **@everyone {name} went offline**")
 
-            # Detect title changes while offline
-            if not live:
-                # Store the last known title separately
-                prev_title = prev.get("title", "")
-                # Only update if the title changed
-                if prev_title and prev_title != live["title"]:
-                    await channel.send(
-                        f"📃 **@everyone {name} changed their title!**\n"
-                        f"**New Title:** {live['title']}"
-                    )
-
             # Save the updated state
             state[name] = {
                 "live": bool(live),
