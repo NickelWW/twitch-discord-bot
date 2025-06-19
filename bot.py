@@ -53,7 +53,7 @@ async def check_streams(channel):
             # Handle title change while live
             elif live and live["title"] != prev["title"]:
                 await channel.send(
-                    f"✏️ **@everyone {name} changed their title**\n"
+                    f"✏️ **{name} changed their title**\n"
                     f"**New Title:** {live['title']}"
                 )
 
