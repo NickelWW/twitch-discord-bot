@@ -43,7 +43,7 @@ async def check_streams(channel):
                 thumbnail_url = live['thumbnail_url'].format(width=1280, height=720) + f"?rand={int(time.time())}"
                 embed = discord.Embed(
                     title=f"{name} is LIVE!",
-                    description=f"**Title:** {live['title']}\n[twitch.tv/{name}](https://twitch.tv/{name})",
+                    description=f"{live['title']}\n[twitch.tv/{name}](https://twitch.tv/{name})",
                     color=discord.Color.purple()
                 )
                 embed.set_image(url=thumbnail_url)
