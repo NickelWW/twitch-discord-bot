@@ -4,11 +4,11 @@ should be pretty easy to remove features you don't like (eg: title change) by ju
 
  <br />
 
-requires these packages (at least on fedora linux):
-
+imports:
+```python
 discord.py
-
 aiohttp
+```
 
  <br/>
 
