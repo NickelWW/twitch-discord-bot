@@ -47,7 +47,7 @@ async def check_streams(channel):
                     color=discord.Color.purple()
                 )
                 embed.set_image(url=thumbnail_url)
-                await channel.send(content="@everyone 🔴", embed=embed)
+                await channel.send(content="🔴 @everyone", embed=embed)
 
 
             # Handle title change while live
