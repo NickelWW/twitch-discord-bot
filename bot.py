@@ -11,6 +11,8 @@ intents = discord.Intents.default()
 intents.guilds = True
 intents.messages = True
 client = discord.Client(intents=intents)
+# Get the current timestamp (unix time)
+now = int(time.time())
 
 twitch = TwitchAPI(config["twitch_client_id"], config["twitch_client_secret"])
 STATE_FILE = "state.json"
@@ -42,7 +44,7 @@ async def check_streams(channel):
             if live and not prev["live"]:
                 thumbnail_url = live['thumbnail_url'].format(width=1280, height=720) + f"?rand={int(time.time())}"
                 embed = discord.Embed(
-                    title=f"{name} is LIVE!",
+                    title=f"{name} is LIVE! (<t:{now}:R>)",
                     description=f"[**{live['title']}**](https://twitch.tv/{name})",
                     color=discord.Color.purple()
                 )
@@ -59,8 +61,6 @@ async def check_streams(channel):
 
             # Handle going offline
             elif not live and prev["live"]:
-                # Get the current timestamp (unix time)
-                now = int(time.time())
                 await channel.send(f"⚫ **@everyone {name} went offline** (<t:{now}:R>)")
 
             # Save the updated state
