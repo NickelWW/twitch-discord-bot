@@ -40,8 +40,9 @@ async def check_streams(channel):
 
             # Handle going online
             if live and not prev["live"]:
-                thumbnail_url = live['thumbnail_url'].format(width=1280, height=720) + f"?rand={int(time.time())}"
+                # Get the current timestamp (unix time)
                 now = int(time.time())
+                thumbnail_url = live['thumbnail_url'].format(width=1280, height=720) + f"?rand={int(time.time())}"
                 embed = discord.Embed(
                     title=f"{name} is LIVE! (<t:{now}:R>)",
                     description=f"[**{live['title']}**](https://twitch.tv/{name})",
