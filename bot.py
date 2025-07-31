@@ -62,7 +62,7 @@ async def check_streams(channel):
             # Handle going offline
             elif not live and prev["live"]:
                 now = int(time.time())
-                await channel.send(f"⚫ **@everyone {name} went offline** (<t:{now}:R>)")
+                await channel.send(f"⚫ **{name} went offline** (<t:{now}:R>)")
 
             # Save the updated state
             state[name] = {
